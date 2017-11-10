@@ -1,0 +1,41 @@
+/*
+Application Settings Go Here
+------------------------------------
+This file acts as a bundler for all variables/mixins/themes, so they
+can easily be swapped out without `core.scss` ever having to know.
+
+For example:
+
+@import './variables/components';
+@import './themes/default';
+*/
+@import './variables/bg';
+@import './variables/colors';
+@import './variables/globals';
+@import './variables/fonts';
+
+// =================================
+// Utilities
+// =================================
+@import './utils/strip-unit';
+
+// =================================
+// Components
+// =================================
+@import './components/full-page';
+@import './components/page-wrapper';
+
+// =================================
+// Mixins
+// =================================
+
+// Utilities
+@import './mixins/font-smoothing';
+@import './mixins/user-drag';
+@import './mixins/intrinsic';
+@import './mixins/type-setting';
+@import './mixins/image-linear-gradient';
+
+// Components
+@import './mixins/top-triangle';
+@import './mixins/image-gallery';

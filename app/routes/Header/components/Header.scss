@@ -1,0 +1,174 @@
+@import "variables/fonts";
+@import "variables/colors";
+@import "variables/globals";
+@import "components/page-wrapper";
+
+@mixin header-color-transition($duration, $timing-function)  {
+  @include transition(
+    background-color $duration $timing-function,
+    box-shadow $duration $timing-function
+  );
+
+  section {
+    @include transition(border-bottom-color $duration $timing-function);
+
+    a.brand {
+      @include transition(color $duration $timing-function);
+    }
+    svg{
+      @include transition(color $duration $timing-function);
+    }
+  }
+}
+
+.header {
+  @include position(fixed, 0 null null null);
+  @include size(100%  $header-height);
+  @include header-color-transition(700ms, ease);
+  z-index: $z-index-highest;
+
+  section {
+    @extend %page-wrapper;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: $header-height;
+    border-bottom: 1px solid $color-primary-contrast;
+
+    svg{
+      fill:white;
+      width: 130px;
+      margin-top: 10px;
+    }
+
+    a.brand {
+      @include type-setting(1);
+      font-family: Oswald;
+      text-transform: capitalize;
+      text-decoration: none;
+      letter-spacing: 0.12rem;
+      font-weight: $font-weight-thin;
+      color: $color-primary-contrast;
+
+    }
+
+    button[data-react-toolbox="button"] {
+      span[class*="icon"] {
+        color: $color-divider;
+      }
+    }
+
+    div[data-react-toolbox="menu"] {
+      > ul > li {
+        @include size(auto line-height(1));
+
+        > span {
+          font-size: type-scale(0);
+          line-height: line-height(1);
+        }
+      }
+    }
+    .menu {
+      display: flex;
+      flex-direction: row;
+      text-transform: uppercase;
+      font-family: Oswald;
+
+      div.navItem {
+        display: flex;
+      }
+      div.navItem, a.link, select {
+        font-size: 14px;
+        border-radius: 5px;
+        margin: 0 15px 0 0;
+        padding: $baseline-height/2;
+        color: white;
+        position: relative;
+        transition: all 0.5s;
+      }
+      a.link, select{
+        background: hsla(0,0%,100%,.1);
+        border-radius: 5px;
+        position: relative;
+        transition: all 0.5s;
+        &:after {
+          display: block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 3px;
+          background-color: vc-color('background', 'light');
+          content: "";
+          transition: all 0.3s;
+        }
+        &:hover {
+          background: transparent;
+          &:after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &.inverted {
+    background-color: vc-color('background', 'light');
+    box-shadow: $zdepth-shadow-2;
+
+    section {
+      border-bottom-color: vc-color('background', $opacity: 0);
+      a.brand {
+        color: vc-color('foreground');
+      }
+      svg{
+        fill: vc-color('foreground');
+        width: 130px;
+        margin-top: 10px;
+      }
+      .menu a.link, div.navItem, select {
+          color:vc-color('background', 'darker');
+      }
+      .menu a.link, select {
+        background:rgba(vc-color('foreground'), 0.1);
+        &:after {
+          background-color: vc-color('foreground');
+        }
+        &:hover {
+          background: transparent;
+          &:after {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    button[data-react-toolbox="button"] {
+      span[class*="icon"] {
+        color: vc-color('foreground');
+      }
+    }
+  }
+}
+
+.header section .menu {
+  @media (max-width: 840px) {
+    div.navItem {
+      display: none;
+    }
+  }
+  @media (max-width: 530px) {
+     a:nth-of-type(1) {
+      display: none;
+    }
+      a.link, .link{
+      margin: 0 4px 0 0;
+    }
+  }
+  @media (max-width: 349px) {
+    a.link, select {
+      display: none;
+    }
+  }
+}

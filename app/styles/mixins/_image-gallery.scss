@@ -1,0 +1,18 @@
+@import "bourbon";
+
+@mixin image-gallery($width: 100vw, $height: 50px, $padding-vertical: 20px, $sep: 0.5rem) {
+  @include size($width $height);
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: $padding-vertical 0;
+
+  img {
+    @include size(auto $height);
+    display: block;
+    padding: 0 $sep;
+  }
+
+}

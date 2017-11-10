@@ -1,11 +1,12 @@
 import React from 'react';
-// using NavLink for the activeClassName, otherwise, for 
+// using NavLink for the activeClassName, otherwise, for
 // a plain link, use Link.
 import { Route, NavLink } from 'react-router-dom';
 
 import Home from '~/routes/Home';
 import Complex from '~/routes/Complex';
 import About from '~/routes/About';
+import Header from '~/routes/Header';
 
 import styles from './App.scss';
 
@@ -17,7 +18,7 @@ import styles from './App.scss';
 const App = () => (
     <div className={ styles.app }>
         <header>
-            <h1> A demo site. </h1>
+            <Header />
         </header>
         <nav>
             <NavLink exact to="/" activeClassName={ styles.active }> home </NavLink>

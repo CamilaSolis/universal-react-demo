@@ -1,0 +1,9 @@
+$vc-backgrounds: (
+  'map': 'https://s3-sa-east-1.amazonaws.com/vc-front-end/bg/map.svg',
+  'diamonds': 'https://s3-sa-east-1.amazonaws.com/vc-front-end/bg/diagmonds.png',
+  'card': 'https://s3-sa-east-1.amazonaws.com/vc-front-end/bg/bg.jpg'
+);
+
+@function vc-bg-url($name) {
+  @return map-get($vc-backgrounds, $name);
+}

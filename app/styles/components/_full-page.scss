@@ -1,0 +1,13 @@
+@import "variables/globals";
+@import "bourbon";
+
+%full-page {
+  @include size(100vw 100%);
+  @include position(relative);
+  padding-top: $header-height;
+  min-height: 500px;
+
+  @media (min-width: $page-desktop-min-width) {
+    @include size(100vw 100vh);
+  }
+}

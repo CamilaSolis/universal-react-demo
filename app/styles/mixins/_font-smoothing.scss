@@ -1,0 +1,26 @@
+@mixin font-smoothing($value: antialiased) {
+  @if $value == antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga';
+  }
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+
+@mixin top-triangle($height, $color, $z-index) {
+  @include position(absolute, -$height 0 0 0);
+  @include size(100% 0);
+
+  content: "";
+  z-index: $z-index;
+  border: {
+    left: 50vw solid transparent;
+    right: 50vw solid transparent;
+    bottom: $height solid $color;
+  }
+}

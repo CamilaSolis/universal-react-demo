@@ -1,0 +1,64 @@
+@import "bourbon";
+
+%rainbow-bg  {
+  @include size(100% 0);
+  @include margin(0);
+
+  $left-colors: (
+  0: #7a5ba4,
+  1: #c74396,
+  2: #ea2f91,
+  3: #ee5b6f,
+  4: #f5a59f,
+  5: #f9b68f,
+  );
+
+  $right-colors: (
+  0: #7a5ba4,
+  1: #6a65aa,
+  2: #6887c2,
+  3: #7abae4,
+  4: #68c8ca,
+  5: #bddfc9,
+  );
+
+  $len: length(map-keys($left-colors));
+  $step: 90/($len * ($len + 1)/2);
+
+  > div {
+    @include size(200% 200%);
+    content: "";
+
+    &.left {
+      @include transform-origin(right bottom);
+      @include position(absolute, null null 0 -200%);
+
+      $deg: 0;
+      @each $index, $bgcolor in $left-colors {
+        $deg: $deg + $step * $index;
+        &[data-index="#{$index}"] {
+          @include background($bgcolor);
+          transform: rotate(#{90 - $deg}deg);
+          box-shadow: $zdepth-shadow-4;
+          z-index: $z-index-normal + 2*$index;
+        }
+      }
+    }
+
+    &.right {
+      @include transform-origin(left bottom);
+      @include position(absolute, null 0 0 100%);
+
+      $deg: 0;
+      @each $index, $bgcolor in $right-colors {
+        $deg: $deg + $step * $index;
+        &[data-index="#{$index}"] {
+          @include background($bgcolor);
+          transform: rotate(#{-90 + $deg}deg);
+          box-shadow: $zdepth-shadow-4;
+          z-index: $z-index-normal + 2*$index+1;
+        }
+      }
+    }
+  }
+}

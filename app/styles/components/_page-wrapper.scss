@@ -1,0 +1,15 @@
+@import "variables/globals";
+
+%page-wrapper {
+  width: $page-mobile-width;
+  height: 100%;
+
+  max-width: $page-mobile-max-width;
+  margin: 0 auto;
+
+  @media (min-width: $page-desktop-min-width) {
+    width: $page-desktop-width;
+    max-width: $page-desktop-max-width;
+    height: auto;
+  }
+}

@@ -1,0 +1,71 @@
+$color-interval: 10% !global;
+$vc-color-key: 'base' !default;
+
+$vc-colors: (
+  'primary': (
+    'dark': #5f2c82,
+    'base': #8b40bf,
+    'light': #a266cc,
+    'lighter': #d1b3e5
+  ),
+  'secondary': (
+    'dark': #49a09d,
+    'base': #27b09c,
+    'light': #73bfbc,
+    'lighter': #dcefee
+  ),
+  'accent': (
+    'dark': #99003b,
+    'base': #e20057,
+    'light': #ff66a1
+  ),
+  'foreground': (
+    'light': #889eaa,
+    'base': #556b77,
+    'dark': #2a363c,
+    'darker': #151b1e
+  ),
+  'background': (
+    'light': #ffffff,
+    'base': #EDF6F9,
+    'dark': #b3d9e6,
+    'darker': #266073
+  )
+);
+
+$vc-opacity: (
+  'light': 0.8,
+  'dark': 0.4,
+);
+
+@function vc-color($name: 'primary', $variant: $vc-color-key, $opacity: 1) {
+  $color: null;
+  $color-spectrum: map-get($vc-colors, $name);
+
+  @if $color-spectrum {
+    $color: map-get($color-spectrum, $variant);
+  }
+
+  $alpha: if(type-of($opacity) == 'number',
+    $opacity,
+    map-get($vc-opacity, $opacity)
+  );
+
+  @if $alpha {
+    $color: rgba($color, $alpha);
+  }
+
+  @return $color;
+}
+
+@function vc-color-level($name: 'primary', $variant: $vc-color-key, $level: 0) {
+  $color: vc-color($name, $variant);
+  $color-base: white;
+
+  @if $level < 0 {
+    $level: -1 * $level;
+    $color-base: black;
+  }
+
+  @return mix($color-base, $color, $level * $color-interval);
+}
