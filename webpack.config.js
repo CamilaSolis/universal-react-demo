@@ -30,9 +30,11 @@ module.exports = ({ base }) => {
 
         resolve: {
             alias: {
-                '~': path.join(__dirname, './app')
+                '~': path.join(__dirname, './app'),
+                bourbon: path.join(__dirname, '/node_modules/bourbon/app/assets/stylesheets/_bourbon.scss'),
+                normalize: path.join(__dirname, '/node_modules/normalize.scss')
             },
-            extensions: ['.js', '.jsx']
+            extensions: ['.js', '.jsx', '.scss']
         },
 
         target: isClient ? 'web' : 'node',

@@ -1,7 +1,7 @@
-@import "variables/fonts";
-@import "variables/colors";
-@import "variables/globals";
-@import "components/page-wrapper";
+@import "../../../styles/variables/fonts";
+@import "../../../styles/variables/colors";
+@import "../../../styles/variables/globals";
+@import "../../../styles/components/page-wrapper";
 
 @mixin header-color-transition($duration, $timing-function)  {
   @include transition(

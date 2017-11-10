@@ -1,4 +1,4 @@
-@import "variables/fonts";
+@import "../variables/fonts";
 
 @mixin type-setting($level: 0) {
   font-size: type-scale($level);

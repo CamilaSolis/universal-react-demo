@@ -1,4 +1,4 @@
-@import "bourbon";
+
 
 @mixin image-gallery($width: 100vw, $height: 50px, $padding-vertical: 20px, $sep: 0.5rem) {
   @include size($width $height);

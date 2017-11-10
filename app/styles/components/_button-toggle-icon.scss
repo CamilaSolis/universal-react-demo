@@ -1,5 +1,5 @@
-@import "variables/globals";
-@import "bourbon";
+@import "~bourbon";
+@import "../variables/globals";
 
 %button-toggle-icon {
   font-family:'Oswald';
